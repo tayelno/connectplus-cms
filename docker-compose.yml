@@ -1,15 +1,26 @@
-version: '3.7'
+version: '3'
 services:
-  mongodb_container:
-    image: mongo:latest
+  strapi:
+    image: strapi/strapi
     environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: rootpassword
-    ports:
-      - 27017:27017
+      DATABASE_CLIENT: mongo
+      DATABASE_NAME: strapi
+      DATABASE_HOST: mongo
+      DATABASE_PORT: 27017
+      DATABASE_USERNAME: strapi
+      DATABASE_PASSWORD: strapi
     volumes:
-      - mongodb_data_container:/data/db
+      - ./cms:/srv/app
+    ports:
+      - '1337:1337'
+    depends_on:
+      - mongo
 
-volumes:
-  mongodb_data_container:
-
+  mongo:
+    image: mongo
+    environment:
+      MONGO_INITDB_DATABASE: strapi
+      MONGO_INITDB_ROOT_USERNAME: strapi
+      MONGO_INITDB_ROOT_PASSWORD: strapi
+    volumes:
+      - ./data:/data/db
