@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "ergs",
+  "info": {
+    "name": "ERG"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "color": {
+      "type": "string",
+      "regex": "^#(?:[0-9a-fA-F]{3}){1,2}$",
+      "default": "#FFFFFF",
+      "required": true,
+      "maxLength": 7,
+      "minLength": 4
+    },
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "events": {
+      "via": "erg",
+      "collection": "event"
+    }
+  }
+}
