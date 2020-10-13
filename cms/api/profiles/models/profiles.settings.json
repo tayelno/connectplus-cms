@@ -1,0 +1,35 @@
+{
+  "kind": "collectionType",
+  "collectionName": "profiles",
+  "info": {
+    "name": "Profile"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string",
+      "regex": "^([a-zA-Z'-]{2,})\\ ([a-zA-Z'-]{2,})$",
+      "required": true
+    },
+    "phoneNumber": {
+      "type": "string",
+      "regex": "^((\\+[0-9]{12})|([0-9]{11}))$",
+      "required": true
+    },
+    "address": {
+      "type": "richtext"
+    },
+    "carPlate": {
+      "type": "string"
+    },
+    "user": {
+      "unique": true,
+      "plugin": "users-permissions",
+      "model": "user",
+      "via": "profile"
+    }
+  }
+}

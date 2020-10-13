@@ -1,0 +1,59 @@
+{
+  "kind": "collectionType",
+  "collectionName": "offers",
+  "info": {
+    "name": "Offer"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "details": {
+      "type": "string"
+    },
+    "discount": {
+      "type": "decimal",
+      "min": 0,
+      "max": 100
+    },
+    "expiration": {
+      "type": "datetime"
+    },
+    "contact": {
+      "type": "string"
+    },
+    "logo": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "attachment": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "files"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "location": {
+      "type": "string"
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": [
+        "tech",
+        "food",
+        "health"
+      ]
+    }
+  }
+}
